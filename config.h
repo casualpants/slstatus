@@ -64,11 +64,10 @@ static const char unknown_str[] = "n/a";
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  */
 static const struct arg args[] = {
-	/* function		format          argument */	
-        { run_command,		" %s ",  	"now-playing sbar"},
-        { run_command,		"^B2^^C0^ %s ^b#1d2225^^c#1d2225^ ",  	"nettraf"},
-        { run_command,  	"^B3^^C0^  %5s ",     "free -h | awk '/^Mem/ { print $3 }' | sed s/i//g"},
-        { cpu_perc, 		"  %3s%% ",  NULL},
-        { run_command, 		" %5s ^b#1d2225^^c#1d2225^ ",        "battery"},
-        { datetime, 		"^B4^^C0^  %s ",         "%a %x  %R"},
+	/* function		format			argument */	
+	{ run_command,	"  %4s |",		"amixer get Master | grep -o '[0-9]*%'"},
+	{ cpu_perc,		"  %3s%% |",	NULL},
+	{ run_command,	"  %5s |",		"free -h | awk '/^Mem/ { print $3 }' | sed s/i//g"},
+	{ datetime,		"  %s |",		"%a %x"},
+	{ datetime,		"  %s ",		"%R"},
 };
